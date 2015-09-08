@@ -13,6 +13,7 @@ class Question extends Model
     'help'
     ];
     
+    public $replied;
     
 
  }

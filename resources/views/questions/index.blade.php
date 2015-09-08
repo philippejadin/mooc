@@ -7,7 +7,12 @@
         <ul>
             @foreach( $questions as $question )
                 
-            <li><a href="{{ url('questions', $question->id) }}">{{ $question->question }}</a></li>
+            <li>
+            <a href="{{ url('questions', $question->id) }}">{{ $question->question }}</a>
+            @if($question->replied) 
+            (Vous avez répondu à cette question)
+            @endif
+            </li>
             @endforeach
         </ul>
     

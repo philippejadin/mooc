@@ -12,7 +12,7 @@ use App\Question;
 use Storage;
 use Config;
 use Illuminate\Http\Request;
-
+use Auth;
 
 
 class QuestionsController extends Controller
@@ -28,7 +28,29 @@ class QuestionsController extends Controller
 		
 		$questions = Question::all();
 		
-		//  dd($questions);
+		$user = Auth::user();
+		
+		
+		if (!Auth::check()) {
+			dd ('pas connecté');
+    		}
+		
+		
+		// if user already replied to this particular question
+		foreach ($questions as $question)
+		{
+			if ($user->getReply($question->id))
+			{
+				$question->replied = true;
+			}
+			else
+			{
+				$question->replied = false;
+			}
+		}
+		
+		//dd($questions);
+		
 		//return $questions;
 		return view('questions.index')->with('questions', $questions);
 		
@@ -47,8 +69,7 @@ class QuestionsController extends Controller
 	{
 		
 		
-		//
-		//$question = Question::find($id);
+		
 		$question = Question::find($id);
 		
 		if (is_null($question))
@@ -64,9 +85,36 @@ class QuestionsController extends Controller
 		// Same for the next user's id as previous user's but in the other direction
 		$nextQuestionID = Question::where('id', '>', $question->id)->min('id');
 		
+		$replies_array = explode ('/', $question->replies);
 		
 		
-		$replies = explode ('/', $question->replies);
+		
+		
+		foreach ($replies_array as $key => $reply)
+		{
+			$replies[$key]['text'] = $reply;
+			$replies[$key]['checked'] = false;
+		}
+		
+		
+		
+		
+		
+		// load replies from current user
+		$user = Auth::user();
+		
+		if (!Auth::check()) {
+			dd ('pas connecté');
+    		}
+		
+		
+		// if user already replied to this particular question
+		if ($user->getReply($id))
+		{
+			$replies[$user->getReply($id)]['checked'] = true;
+		}
+		
+		
 		
 		
 		//  dd($questions);
@@ -83,12 +131,32 @@ class QuestionsController extends Controller
 		return view('questions.create');
 	}
 	
+	
+	//this methog is alos used to manage the next/previous question using a post form. Kind of hijacking the purpose of it...
 	public function store(Request $request)
 	{
 	
+		// this block takes care of redirecting to the proper question
+		if ($request->input('next'))
+			{
+				$user = Auth::user();
+				$user->setReply($request->input('question_id'), $request->input('user_reply'));
+				return redirect('questions/'. $request->input('next_question_id'));
+			}
+			
+			
+			if ($request->input('previous'))
+			{
+				$user = Auth::user();
+				$user->setReply($request->input('question_id'), $request->input('user_reply'));
+				return redirect('questions/'. $request->input('previous_question_id'));
+			}
+		
+			
+		// this is the normal flow when a new question is stored :  
+			
 		$this->validate($request, ['question' => 'required', 'replies' => 'required', 'help' => 'required']);
 		Question::create($request->all());
-		//return $input;
 		return redirect('questions');
 	}
 
@@ -102,7 +170,6 @@ class QuestionsController extends Controller
 	public function update($id, Request $request)
 	{
 		$this->validate($request, ['question' => 'required', 'replies' => 'required', 'help' => 'required']);
-		
 		$question = Question::findOrFail($id);
 		$question->update($request->all());
 		return redirect ('questions/' . $question->id);

@@ -13,8 +13,8 @@ return [
     |
     */
 
-    //'debug' => env('APP_DEBUG', false),
-	'debug' => TRUE,
+    'debug' => env('APP_DEBUG', false),
+//	'debug' => TRUE,
 
     /*
     |--------------------------------------------------------------------------
@@ -112,8 +112,8 @@ return [
     'providers' => [
 
     
-    'Barryvdh\Debugbar\ServiceProvider',
-        
+    
+        Barryvdh\Debugbar\ServiceProvider::class,
     
     /*
          * Laravel Framework Service Providers...
@@ -142,6 +142,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
+        
+        
         
         
         
@@ -208,6 +210,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 	'Form'	    => Illuminate\Html\FormFacade::class, 
 	'Html'      => Illuminate\Html\HtmlFacade::class,
+	'Debugbar' => Barryvdh\Debugbar\Facade::class,
 	
 
     ],
