@@ -112,6 +112,7 @@ class QuestionsController extends Controller
 		if ($user->getReply($id))
 		{
 			$replies[$user->getReply($id)]['checked'] = true;
+			$question->replied = true;
 		}
 		
 		

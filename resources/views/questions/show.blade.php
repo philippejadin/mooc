@@ -2,6 +2,9 @@
  
 @section('content')
     
+
+<div class="question">
+
 {!! Form::open(['url' => 'questions']) !!}
 
 <h2>{{$question->question }}</h2>
@@ -9,7 +12,7 @@
 
 <input type="hidden" name="question_id" value="{{$question->id}}">
 
-<div>
+<div class="replies">
 @foreach ($replies as $key => $reply)
 <input type="radio" name="user_reply" value="{{$key}}"  @if ($reply['checked']) checked @endif>{{$reply['text']}}</input> <br/>
 @endforeach
@@ -17,7 +20,7 @@
 
 
 
-<div>
+<div class="buttons">
 
 @if ($previousQuestionID)
 <form>
@@ -39,10 +42,13 @@
 {!! Form::close() !!}
 
 
+<div class="help"@unless ($question->replied)  style="display:none" @endunless >{{$question->help }}</div>
+
+
 <hr/>
 <a href="{{url('questions/' . $question->id . '/edit') }}">Edit</a>
 
-
+</div>
 
 
 @endsection
