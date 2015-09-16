@@ -53,3 +53,6 @@ Route::post('questions', 'QuestionsController@store');
 Route::resource('questions', 'QuestionsController'); 
 
 
+
+Route::get('pdf', 'PdfController@index');
+

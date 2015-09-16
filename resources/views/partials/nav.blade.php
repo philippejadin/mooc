@@ -13,16 +13,26 @@
             <ul class="nav navbar-nav">
               <li><a href="{{ url('home') }}">Accueil</a></li>
               <li><a href="{{ url('questions') }}">Les questions</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="{{ url('pdf') }}">Votre récapitulatif en PDF</a></li>
+              <!--<li><a href="#">Contact</a></li>-->
             </ul>
             
             
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{{ url('home') }}">Bonjour</a></li>
+              <li>  
+              @if ($user_logged)
+              Bonjour, {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
+              <a href="{{ url('auth/logout') }}">(Déconnection)</a>
+              @else
+              <a href="{{ url('auth/login') }}">Cliquez ici pour vous connecter</a><a href="{{ url('auth/create') }}">Cliquez ici pour vous créer un compte</a>
+              @endif
+              </a></li>
               
             </ul>
             
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+      
+      
     

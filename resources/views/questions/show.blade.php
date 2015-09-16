@@ -42,7 +42,7 @@
 {!! Form::close() !!}
 
 
-<div class="help"@unless ($question->replied)  style="display:none" @endunless >{{$question->help }}</div>
+<div class="help"@unless ($question->replied)  style="display:none" @endunless >{!! $question->help !!}</div>
 
 
 <hr/>

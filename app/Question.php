@@ -6,14 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    //
-    protected $fillable = [
-    'question',
-    'replies',
-    'help'
-    ];
-    
-    public $replied;
-    
-
- }
+	//
+	protected $fillable = [
+	'question',
+	'replies',
+	'help'
+	];
+	
+	public $replied;
+	
+	
+	public function getReplies()
+	{
+		$replies_array = explode ('/', $this->replies);
+		
+		foreach ($replies_array as $key => $reply)
+		{
+			$replies[$key]['text'] = $reply;
+			$replies[$key]['checked'] = false;
+		}
+		
+		return $replies;
+		
+	}
+	
+	
+}

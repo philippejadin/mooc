@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        view()->composer('partials.nav', function($view)
+        	{
+        		$view->with('user_logged', Auth::check() );
+        		
+        		if (Auth::check() )
+        		{
+        			//dd (Auth::user());
+        			$view->with('user', compact(Auth::user()->name) ); 
+        		}
+        	});
+        
+        
     }
 
     /**

@@ -22,6 +22,9 @@
         <link rel="stylesheet" href="{{ asset('css/all.css') }}">
         <script src="{{ asset('js/mooc.js') }}"></script>
         
+        <!-- CKeditor -->
+        <script src="//cdn.ckeditor.com/4.5.3/standard/ckeditor.js"></script>
+        
 
     </head>
     

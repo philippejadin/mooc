@@ -85,16 +85,18 @@ class QuestionsController extends Controller
 		// Same for the next user's id as previous user's but in the other direction
 		$nextQuestionID = Question::where('id', '>', $question->id)->min('id');
 		
+		
+		/*
 		$replies_array = explode ('/', $question->replies);
-		
-		
-		
-		
+			
 		foreach ($replies_array as $key => $reply)
 		{
 			$replies[$key]['text'] = $reply;
 			$replies[$key]['checked'] = false;
 		}
+		*/
+		
+		$replies = $question->getReplies();
 		
 		
 		

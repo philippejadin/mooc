@@ -1,3 +1,5 @@
+
+
 <div class="form-group">
 {!! Form::label('question', 'Titre de la question') !!}
 {!! Form::text('question', null, ['class' => 'form-control']) !!}
@@ -12,5 +14,12 @@
 
 <div class="form-group">
 {!! Form::label('help', 'Texte d\'aide') !!}
-{!! Form::textarea('help', null, ['class' => 'form-control']) !!}
+{!! Form::textarea('help', null, ['class' => 'form-control', 'id' => 'help']) !!}
 </div>
+
+
+
+<script>
+                CKEDITOR.replace('help');
+</script>
+

@@ -1,11 +1,13 @@
 
 $(document).ready(function(){
 		
-		$( "input[type=radio]" ).click(function() {
+		$( ".question input[type=radio]" ).click(function() {
 				
 				$(".help").slideDown();
 		});
 		
 });
+
+
 
 
