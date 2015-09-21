@@ -12,9 +12,7 @@ class CreateQuestionUserTable extends Migration
      */
     public function up()
     {
-    	    Schema::create('question_user', function(Blueprint $table)
-    	    	    {
-    	    	    	    //$table->
+    	  
     }
 
     /**
