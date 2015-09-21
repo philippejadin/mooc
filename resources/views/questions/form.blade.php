@@ -7,7 +7,7 @@
 
 
 <div class="form-group">
-{!! Form::label('replies', 'Réponses à la question, séparées par des / ') !!}
+{!! Form::label('replies', 'Réponses à la question, une par ligne ') !!}
 {!! Form::textarea('replies', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -22,4 +22,3 @@
 <script>
                 CKEDITOR.replace('help');
 </script>
-

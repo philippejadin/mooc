@@ -1,7 +1,7 @@
 @extends('app')
- 
+
 @section('content')
-    
+
 
 <div class="question">
 
@@ -14,7 +14,7 @@
 
 <div class="replies">
 @foreach ($replies as $key => $reply)
-<input type="radio" name="user_reply" value="{{$key}}"  @if ($reply['checked']) checked @endif>{{$reply['text']}}</input> <br/>
+<input type="radio" name="user_reply" value="{{$key}}"  @if ($reply['checked']) checked @endif> {{$reply['text']}} </input> <br/>
 @endforeach
 </div>
 
@@ -46,7 +46,8 @@
 
 
 <hr/>
-<a href="{{url('questions/' . $question->id . '/edit') }}">Edit</a>
+<a href="{{url('questions/' . $question->id . '/edit') }}">Modifier cette question</a>
+| <a href="{{url('questions/create') }}">Créer une nouvelle question</a>
 
 </div>
 

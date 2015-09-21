@@ -1,5 +1,5 @@
 @extends('app')
- 
+
 @section('content')
 <h1>Editer une question : {!! $question->question !!}</h1>
 
@@ -15,8 +15,8 @@
 
 {!! Form::close() !!}
 
-@include('errors.list');
-	
+@include('errors.list')
+
 
 
 @endsection
