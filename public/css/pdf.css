@@ -8,3 +8,17 @@ h1, h2, h3
 {
 	font-family : 'sans-serif';
 }
+
+
+a
+{
+  text-decoration: none;
+}
+
+
+hr
+{
+  border: 0;
+  border-top: 1px dotted #8c8b8b;
+
+}

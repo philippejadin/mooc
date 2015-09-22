@@ -25,16 +25,34 @@
 @if ($previousQuestionID)
 <form>
 <!--<a class="btn btn-default" href="./{{$previousQuestionID}}"><span class="glyphicon glyphicon-chevron-left"></span>Question précédente</a>-->
-<input class="btn btn-default" type="submit" name="previous" value="Question précédente">
+
+<button type="submit" class="btn btn-default" name="previous" value="Question précédente">
+   <span class="glyphicon glyphicon-chevron-left"></span> Question précédente
+</button>
+
 <input type="hidden" name="previous_question_id" value="{{$previousQuestionID}}">
 @endif
 
 
 @if ($nextQuestionID)
 <!--<a class="btn btn-default" href="./{{$nextQuestionID}}">Question suivante<span class="glyphicon glyphicon-chevron-right"></span></a>-->
-<input class="btn btn-default" type="submit" name="next" value="Question suivante">
+
+
+<button type="submit" class="btn btn-default" name="next" value="Question suivante">
+   Question suivante <span class="glyphicon glyphicon-chevron-right"></span>
+</button>
+
 <input type="hidden" name="next_question_id" value="{{$nextQuestionID}}">
+@else
+
+Vous avez terminé la liste des questions, <a href="{{ url('pdf') }}" target="_blank">téléchargez votre récapitulatif en PDF</a>
+
+
 @endif
+
+
+
+
 
 </div>
 
@@ -42,12 +60,18 @@
 {!! Form::close() !!}
 
 
-<div class="help"@unless ($question->replied)  style="display:none" @endunless >{!! $question->help !!}</div>
+<div class="help" @unless ($question->replied)  style="display:none" @endunless >
+  <div class="alert alert-info" role="alert">
+    {!! $question->help !!}
+  </div>
+</div>
 
 
 <hr/>
+@if ($user_is_admin)
 <a href="{{url('questions/' . $question->id . '/edit') }}">Modifier cette question</a>
 | <a href="{{url('questions/create') }}">Créer une nouvelle question</a>
+@endif
 
 </div>
 

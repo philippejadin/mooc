@@ -3,19 +3,21 @@
 <link rel="stylesheet" href="{{ asset('css/pdf.css') }}">
 </head>
 
-
 <body>
 
 
-<h1>Récapitulatif du Mooc</h1>
+<h1>Récapitulatif de la formation en ligne : points de repère pour prévenir la maltraitance</h1>
 
+<p>
+ Formation suivie par {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
+</p>
 
 
 @foreach( $questions as $question )
 
 <h2>
 <a href="{{ url('questions', $question->id) }}">{{ $question->question }}</a>
-@if($question->replied) 
+@if($question->replied)
 (Vous avez répondu à cette question)
 @endif
 </h2>
@@ -24,7 +26,7 @@
 @foreach ($question->getReplies() as $key => $reply)
 
 @if ($reply['checked'])
-[x] 
+[x]
 @else
 [ ]
 @endif
@@ -38,6 +40,11 @@
 
 {!! $question->help !!}
 </p>
+
+
+<p>&nbsp;</p>
+<hr/>
+<p>&nbsp;</p>
 
 @endforeach
 

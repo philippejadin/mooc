@@ -32,12 +32,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    
-    
+
+
     // save the user reply to user DB as a json string
     public function setReply($question_id, $reply)
     {
-    	    
+
     	    if (isset($question_id) && isset($reply))
     	    {
     	    	    $mooc = json_decode($this->mooc, true);
@@ -47,14 +47,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     	    }
     	    //dd ($question_id, $reply, $mooc);
     }
-    
+
     // return all the replies for this user as an array
     public function getReplies()
     {
     	    return json_decode($this->mooc, true);
     }
-    
-    
+
+
     public function getReply($id)
     {
     	    $replies = $this->getReplies();
@@ -64,6 +64,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     	    }
     	    return false;
     }
-    
-    
+
+
+    public function isAdmin()
+    {
+      if ($this->admin > 0)
+      {
+        return true;
+      }
+
+      return false;
+    }
+
 }
