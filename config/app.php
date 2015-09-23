@@ -111,10 +111,10 @@ return [
 
     'providers' => [
 
-    
-    
+
+
         Barryvdh\Debugbar\ServiceProvider::class,
-    
+
     /*
          * Laravel Framework Service Providers...
          */
@@ -143,9 +143,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        
-        
-        
+
+
+
 
         /*
          * Application Service Providers...
@@ -154,8 +154,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        
-        
+
+
 
     ],
 
@@ -172,9 +172,9 @@ return [
 
     'aliases' => [
 
-    	'Debugbar' => 'Barryvdh\Debugbar\Facade',
     
-    
+
+
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
@@ -207,11 +207,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-	'Form'	    => Illuminate\Html\FormFacade::class, 
+	'Form'	    => Illuminate\Html\FormFacade::class,
 	'Html'      => Illuminate\Html\HtmlFacade::class,
 	'Debugbar' => Barryvdh\Debugbar\Facade::class,
 	'PDF' => Barryvdh\DomPDF\Facade::class,
-	
+
 
     ],
 
