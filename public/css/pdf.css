@@ -21,10 +21,27 @@ a {
   border-bottom: 0.2pt dotted #8c8b8b;
 }
 
+
+.question .result
+{
+
+
+
+}
+
+.question .result img
+{
+  width: 1em;
+  height: 1em;
+  padding: 1px;
+  border: 1px solid gray;
+  margin-top: 3px;
+}
+
 .question h2 {
   page-break-after: avoid;
 }
-.help, .more_info, .replies {
+.more_info, .replies {
   page-break-inside: avoid;
 }
 .question h2 a {
@@ -43,6 +60,9 @@ a {
 .footer {
   position: fixed;
   bottom: 0px;
+  margin-left : auto;
+  margin-right : auto;
+  font-size: 8pt;
 }
 .pagenum:before {
   content: counter(page);

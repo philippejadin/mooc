@@ -24,7 +24,7 @@
 
 @if ($previousQuestionID)
 <form>
-<!--<a class="btn btn-default" href="./{{$previousQuestionID}}"><span class="glyphicon glyphicon-chevron-left"></span>Question précédente</a>-->
+
 
 <button type="submit" class="btn btn-default" name="previous" value="Question précédente">
    <span class="glyphicon glyphicon-chevron-left"></span> Question précédente
@@ -35,7 +35,7 @@
 
 
 @if ($nextQuestionID)
-<!--<a class="btn btn-default" href="./{{$nextQuestionID}}">Question suivante<span class="glyphicon glyphicon-chevron-right"></span></a>-->
+
 
 
 <button type="submit" class="btn btn-default" name="next" value="Question suivante">
@@ -45,7 +45,7 @@
 <input type="hidden" name="next_question_id" value="{{$nextQuestionID}}">
 @else
 
-Vous avez terminé la liste des questions, <a href="{{ url('pdf') }}" target="_blank">téléchargez votre récapitulatif en PDF</a>
+<a href="{{ url('finish') }}" class="btn btn-default">Terminer la formation</a>
 
 
 @endif

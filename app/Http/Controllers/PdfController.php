@@ -31,23 +31,20 @@ class PdfController extends Controller
 
 		// if user already replied to this particular question, store reply number in the $question->replied var. Else store -1
 		// oh yes you guessed it already :-)
-		foreach ($questions as $question)
-		{
-			if ($user->getReply($question->id))
-			{
-				$question->replied = $user->getReply($question->id);
-			}
-			else
-			{
-				$question->replied = -1;
-			}
-		}
 
 
 
-		//dd($questions);
 
-		$html = view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now())->render();
+
+
+		//dd ($questions);
+
+
+
+		// uncomment the following line to disable pdf rendering and return a quick and dirty html file.
+		return view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now('Europe/Brussels'));
+
+		$html = view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now('Europe/Brussels'))->render();
 
 		$pdf = App::make('dompdf.wrapper');
 		$pdf->loadHTML($html);

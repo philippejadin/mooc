@@ -50,9 +50,14 @@ Route::get('questions/{id}', 'QuestionsController@show');
 Route::post('questions', 'QuestionsController@store');
 */
 
-Route::resource('questions', 'QuestionsController'); 
+Route::resource('questions', 'QuestionsController');
 
 
 
 Route::get('pdf', 'PdfController@index');
 
+
+Route::get('finish', function ()
+{
+  return view('finish');
+});

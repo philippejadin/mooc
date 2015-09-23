@@ -25,18 +25,19 @@ class QuestionsController extends Controller
 	public function index()
 	{
 		//
-		
+
 		$questions = Question::all();
-		
+
 		$user = Auth::user();
-		
-		
+
+
 		if (!Auth::check()) {
 			dd ('pas connecté');
     		}
-		
-		
+
+
 		// if user already replied to this particular question
+		/*
 		foreach ($questions as $question)
 		{
 			if ($user->getReply($question->id))
@@ -48,17 +49,33 @@ class QuestionsController extends Controller
 				$question->replied = false;
 			}
 		}
-		
+		*/
+
+		foreach ($questions as $question)
+		{
+			if ($question->getAnswer())
+			{
+				$question->replied = true;
+			}
+			else
+			{
+				$question->replied = false;
+			}
+		}
+
+
+
+
 		//dd($questions);
-		
+
 		//return $questions;
 		return view('questions.index')->with('questions', $questions);
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 	/**
 	* Display the specified resource.
 	*
@@ -67,59 +84,59 @@ class QuestionsController extends Controller
 	*/
 	public function show($id)
 	{
-		
-		
-		
+
+
+
 		$question = Question::find($id);
-		
+
 		if (is_null($question))
 		{
 			abort(404);
 		}
-		
-		
+
+
 		// Get the current user that will be the origin of our operations
 		// Get ID of a User whose autoincremented ID is less than the current user, but because some entries might have been deleted we need to get the max available ID of all entries whose ID is less than current user's
 		$previousQuestionID = Question::where('id', '<', $question->id)->max('id');
-		
+
 		// Same for the next user's id as previous user's but in the other direction
 		$nextQuestionID = Question::where('id', '>', $question->id)->min('id');
-		
-		
+
+
 		/*
 		$replies_array = explode ('/', $question->replies);
-			
+
 		foreach ($replies_array as $key => $reply)
 		{
 			$replies[$key]['text'] = $reply;
 			$replies[$key]['checked'] = false;
 		}
 		*/
-		
-		$replies = $question->getReplies();
-		
-		
-		
-		
-		
+
+		$replies = $question->getChoices();
+
+
+
+
+
 		// load replies from current user
 		$user = Auth::user();
-		
+
 		if (!Auth::check()) {
 			dd ('pas connecté');
     		}
-		
-		
+
+
 		// if user already replied to this particular question
-		if ($user->getReply($id))
+		if ($question->getAnswer())
 		{
-			$replies[$user->getReply($id)]['checked'] = true;
+			$replies[$question->getAnswer()]['checked'] = true;
 			$question->replied = true;
 		}
-		
-		
-		
-		
+
+
+
+
 		//  dd($questions);
 		//return view('questions.show', compact('questions'));
 		//
@@ -127,43 +144,49 @@ class QuestionsController extends Controller
 		//
 		//return view('questions.show')->with('question', $question);
 	}
-	
-	
+
+
 	public function create()
 	{
 		return view('questions.create');
 	}
-	
-	
+
+
 	//this methog is alos used to manage the next/previous question using a post form. Kind of hijacking the purpose of it...
 	public function store(Request $request)
 	{
-	
+
 		// this block takes care of redirecting to the proper question
 		if ($request->input('next'))
 			{
 				$user = Auth::user();
-				$user->setReply($request->input('question_id'), $request->input('user_reply'));
+
+				$question = Question::find($request->input('question_id'));
+				$question->setAnswer($request->input('user_reply'));
+
 				return redirect('questions/'. $request->input('next_question_id'));
 			}
-			
-			
+
+
 			if ($request->input('previous'))
 			{
 				$user = Auth::user();
-				$user->setReply($request->input('question_id'), $request->input('user_reply'));
+
+				$question = Question::find($request->input('question_id'));
+				$question->setAnswer($request->input('user_reply'));
+
 				return redirect('questions/'. $request->input('previous_question_id'));
 			}
-		
-			
-		// this is the normal flow when a new question is stored :  
-			
+
+
+		// this is the normal flow when a new question is stored :
+
 		$this->validate($request, ['question' => 'required', 'replies' => 'required', 'help' => 'required']);
 		Question::create($request->all());
 		return redirect('questions');
 	}
 
-	
+
 	public function edit($id)
 	{
 		$question = Question::findOrFail($id);
@@ -178,5 +201,5 @@ class QuestionsController extends Controller
 		return redirect ('questions/' . $question->id);
 	}
 
-	
+
 }

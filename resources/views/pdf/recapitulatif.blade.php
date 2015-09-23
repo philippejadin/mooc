@@ -8,7 +8,7 @@
 
 
   <div class="footer">Page
-    <span class="pagenum"></span>
+    <span class="pagenum"></span> - Formation en ligne : points de repère pour prévenir la maltraitance - Yapaka.be
   </div>
 
 
@@ -35,25 +35,31 @@
 
     </h2>
 
+<p></p>
+
     <div class="replies">
 
-      @foreach ($question->getReplies() as $key => $reply)
 
-<!--
-      @if ($question->replied == $key + 1) [x] @else [ ] @endif
+      Réponse : {{$question->getAnswer() }}<br/>
+      Réponse attendue :  {{$question->answer}} <br/>
 
--->
-
+      @foreach ($question->getChoices() as $key => $reply)
 
 
 
-      @if ($question->answer == $key + 1)
-      <span class="reply">[x]</span>
-      @else
-      <span class="reply">[ ]</span>
-      @endif
+      <span class="result">
+
+      @if ($question->answer == $key) <img src="{{asset('css/right.png')}}"/> @endif
 
 
+      @if (($question->getAnswer() == $key) && ($question->answer <> $key) ) <img src="{{asset('css/wrong.png')}}"/> @endif
+
+
+      @if (($question->getAnswer() <> $key) && ($question->answer <> $key) ) <img src="{{asset('css/blank.png')}}"/> @endif
+
+    </span>
+
+({{$key}})
 
       {{$reply['text']}}
 
