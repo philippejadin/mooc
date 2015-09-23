@@ -62,8 +62,15 @@ Vous avez terminé la liste des questions, <a href="{{ url('pdf') }}" target="_b
 
 <div class="help" @unless ($question->replied)  style="display:none" @endunless >
   <div class="alert alert-info" role="alert">
+    <div style="float: right; padding-left: 10px; padding-bottom: 10px; font-size: 40px;"><span class="glyphicon glyphicon-info-sign" ></span></div>
     {!! $question->help !!}
   </div>
+
+  <div class="alert alert-info" role="alert">
+<strong>Pour aller plus loin</strong>
+    {!! $question->more_info !!}
+  </div>
+
 </div>
 
 

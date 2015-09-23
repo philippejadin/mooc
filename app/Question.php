@@ -10,10 +10,13 @@ class Question extends Model
 	protected $fillable = [
 	'question',
 	'replies',
-	'help'
+	'help',
+	'more_info',
+	'answer'
 	];
 
 	public $replied;
+
 
 
 	public function getReplies()

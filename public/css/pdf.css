@@ -1,24 +1,49 @@
-body
-{
-	font-family: DejaVu Sans;
-	font-size: 10pt;
+body {
+  font-family: DejaVu Sans;
+  font-size: 9pt;
 }
-
-h1, h2, h3
-{
-	font-family : 'sans-serif';
+h1, h2, h3 {
+  font-family: 'sans-serif';
 }
-
-
-a
-{
+a {
   text-decoration: none;
 }
+.logo img {
+  width: 5cm;
+  height: auto;
+}
+.logo {
+  margin-bottom: 1cm;
+}
+.question {
+  margin-bottom: 1cm;
+  padding-bottom: 1cm;
+  border-bottom: 0.2pt dotted #8c8b8b;
+}
 
-
-hr
-{
-  border: 0;
-  border-top: 1px dotted #8c8b8b;
-
+.question h2 {
+  page-break-after: avoid;
+}
+.help, .more_info, .replies {
+  page-break-inside: avoid;
+}
+.question h2 a {
+  color: black;
+  border-bottom: 1pt solid black;
+}
+.help {
+  /*margin-bottom: 1cm;*/
+}
+.more_info {
+  border: 0.2pt solid gray;
+  background-color: rgb(227, 227, 225);
+  padding: 5mm;
+  /*margin: 5mm;*/
+}
+.footer {
+  position: fixed;
+  bottom: 0px;
+}
+.pagenum:before {
+  content: counter(page);
 }
