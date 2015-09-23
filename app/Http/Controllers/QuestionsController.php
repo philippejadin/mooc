@@ -24,9 +24,14 @@ class QuestionsController extends Controller
 	*/
 	public function index()
 	{
-		//
+
+		// this should limit the number of queries but need more digging
+		// eager loading
+		//$questions = Question::with('replies')->get();
 
 		$questions = Question::all();
+
+
 
 		$user = Auth::user();
 

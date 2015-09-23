@@ -56,7 +56,6 @@ public function getAnswer()
 	$reply = $this->replies()->where('user_id', $user->id)->first();
 
 
-
 	if ($reply)
 	{
 			$this->answer = $reply->reply;
