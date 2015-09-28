@@ -3,6 +3,11 @@
 @section('content')
 
 
+@if (Session::has('message'))
+<div class="alert alert-danger">{{ Session('message') }}</div>
+@endif
+
+
     <h2>Formation en ligne : points de repère pour prévenir la maltraitance</h2>
 
 <p>

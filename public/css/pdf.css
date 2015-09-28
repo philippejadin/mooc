@@ -1,6 +1,11 @@
+
+
 body {
   font-family: DejaVu Sans;
   font-size: 9pt;
+
+
+
 }
 h1, h2, h3 {
   font-family: 'sans-serif';
@@ -18,9 +23,14 @@ a {
 .question {
   margin-bottom: 1cm;
   padding-bottom: 1cm;
-  border-bottom: 0.2pt dotted #8c8b8b;
+  border-bottom: 0.2pt dotted #222;
 }
 
+
+.small
+{
+  font-size: 6pt;
+}
 
 .question .result
 {
@@ -54,14 +64,14 @@ a {
 .more_info {
   border: 0.2pt solid gray;
   background-color: rgb(227, 227, 225);
-  padding: 5mm;
-  /*margin: 5mm;*/
+  padding: 4mm;
+  padding-left: 2mm;
+  padding-right: 2mm;
+  margin: 0;
 }
 .footer {
   position: fixed;
   bottom: 0px;
-  margin-left : auto;
-  margin-right : auto;
   font-size: 8pt;
 }
 .pagenum:before {

@@ -35,26 +35,11 @@ class QuestionsController extends Controller
 
 		$user = Auth::user();
 
-
-		if (!Auth::check()) {
-			dd ('pas connecté');
-    		}
-
-
-		// if user already replied to this particular question
-		/*
-		foreach ($questions as $question)
+		if (!Auth::check())
 		{
-			if ($user->getReply($question->id))
-			{
-				$question->replied = true;
-			}
-			else
-			{
-				$question->replied = false;
-			}
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
 		}
-		*/
+
 
 		foreach ($questions as $question)
 		{
@@ -92,6 +77,12 @@ class QuestionsController extends Controller
 
 
 
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
+
 		$question = Question::find($id);
 
 		if (is_null($question))
@@ -124,12 +115,6 @@ class QuestionsController extends Controller
 
 
 
-		// load replies from current user
-		$user = Auth::user();
-
-		if (!Auth::check()) {
-			dd ('pas connecté');
-    		}
 
 
 		// if user already replied to this particular question
@@ -153,6 +138,11 @@ class QuestionsController extends Controller
 
 	public function create()
 	{
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
 		return view('questions.create');
 	}
 
@@ -160,6 +150,12 @@ class QuestionsController extends Controller
 	//this methog is alos used to manage the next/previous question using a post form. Kind of hijacking the purpose of it...
 	public function store(Request $request)
 	{
+
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
 
 		// this block takes care of redirecting to the proper question
 		if ($request->input('next'))
@@ -169,7 +165,16 @@ class QuestionsController extends Controller
 				$question = Question::find($request->input('question_id'));
 				$question->setAnswer($request->input('user_reply'));
 
-				return redirect('questions/'. $request->input('next_question_id'));
+				if ($request->input('next_question_id'))
+				{
+						return redirect('questions/'. $request->input('next_question_id'));
+				}
+				else // latest question, redirect to the "finish" page
+				{
+						return redirect('finish');
+				}
+
+
 			}
 
 
@@ -194,12 +199,25 @@ class QuestionsController extends Controller
 
 	public function edit($id)
 	{
+
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
+
 		$question = Question::findOrFail($id);
 		return view('questions.edit', compact('question'));
 	}
 
 	public function update($id, Request $request)
 	{
+
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
 		$this->validate($request, ['question' => 'required', 'replies' => 'required', 'help' => 'required']);
 		$question = Question::findOrFail($id);
 		$question->update($request->all());

@@ -45,7 +45,11 @@
 <input type="hidden" name="next_question_id" value="{{$nextQuestionID}}">
 @else
 
-<a href="{{ url('finish') }}" class="btn btn-default">Terminer la formation</a>
+<button type="submit" class="btn btn-default" name="next" value="Question suivante">
+  Terminer la formation <span class="glyphicon glyphicon-chevron-right"></span>
+</button>
+
+
 
 
 @endif

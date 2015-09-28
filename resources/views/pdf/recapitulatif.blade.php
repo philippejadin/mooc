@@ -39,9 +39,10 @@
 
     <div class="replies">
 
-
+      <!--
       Réponse : {{$question->getAnswer() }}<br/>
       Réponse attendue :  {{$question->answer}} <br/>
+    -->
 
       @foreach ($question->getChoices() as $key => $reply)
 
@@ -59,12 +60,20 @@
 
     </span>
 
-({{$key}})
+
 
       {{$reply['text']}}
 
 
-      <br/> @endforeach
+      @if (($question->getAnswer() == $key) && ($question->answer <> $key) )
+      <br/>
+      <span class="small">Vous n'avez pas choisi l'option que nous suggérons. Peut être le sujet mérite-t-il d'être approfondi.</span>
+      @endif
+
+
+      <br/>
+
+      @endforeach
     </div>
 
     <div class="help">

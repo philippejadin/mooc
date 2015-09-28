@@ -24,25 +24,20 @@ class PdfController extends Controller
 	*/
 	public function index()
 	{
+
+		if (!Auth::check())
+		{
+			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
+		}
+
+
 		$questions = Question::all();
 
 
 		$user = Auth::user();
 
-		// if user already replied to this particular question, store reply number in the $question->replied var. Else store -1
-		// oh yes you guessed it already :-)
-
-
-
-
-
-
-		//dd ($questions);
-
-
-
 		// uncomment the following line to disable pdf rendering and return a quick and dirty html file.
-		return view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now('Europe/Brussels'));
+		//return view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now('Europe/Brussels'));
 
 		$html = view('pdf.recapitulatif')->with('questions', $questions)->with('date', Carbon::now('Europe/Brussels'))->render();
 

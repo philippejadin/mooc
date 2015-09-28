@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300);
+
+
+
 .help
 {
 /*	display: none;*/
@@ -8,10 +12,10 @@
 	margin-bottom: 3em;
 }
 
-body
+body, h1, h2, h3
 {
-font-size: 1.5em;
-
+/*font-size: 1.5em;*/
+font-family: 'Roboto', sans-serif;
 }
 
 
@@ -20,4 +24,21 @@ font-size: 1.5em;
 .container {
     width: 950px !important;
 }
+
+body
+{
+	font-size: 1.5em;
+}
+
+}
+
+
+iframe
+{
+width: 100%;
+min-height: 2000px;
+height: auto;
+border: 0;
+
+
 }

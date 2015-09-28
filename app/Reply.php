@@ -13,15 +13,18 @@ class Reply extends Model
   	'reply'
   	];
 
-    public function setReply($user_id, $question_id, $reply)
+
+
+    /*
+    Those would probably make most sense to reduce number of queries:
+    */
+    public function getRepliesByUser($user_id)
     {
-
-
-
 
     }
 
-    public function getReply($question_id)
+
+    public function getRepliesByQuestion($question_id)
     {
 
     }
