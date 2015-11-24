@@ -53,12 +53,6 @@ class QuestionsController extends Controller
 			}
 		}
 
-
-
-
-		//dd($questions);
-
-		//return $questions;
 		return view('questions.index')->with('questions', $questions);
 
 
@@ -74,9 +68,6 @@ class QuestionsController extends Controller
 	*/
 	public function show($id)
 	{
-
-
-
 		if (!Auth::check())
 		{
 			return redirect('home')->with('message', "Veuillez d'abord vous connecter");
@@ -99,21 +90,7 @@ class QuestionsController extends Controller
 		$nextQuestionID = Question::where('id', '>', $question->id)->min('id');
 
 
-		/*
-		$replies_array = explode ('/', $question->replies);
-
-		foreach ($replies_array as $key => $reply)
-		{
-			$replies[$key]['text'] = $reply;
-			$replies[$key]['checked'] = false;
-		}
-		*/
-
 		$replies = $question->getChoices();
-
-
-
-
 
 
 
@@ -125,11 +102,6 @@ class QuestionsController extends Controller
 		}
 
 
-
-
-		//  dd($questions);
-		//return view('questions.show', compact('questions'));
-		//
 		return view('questions.show', compact('question', 'previousQuestionID', 'nextQuestionID', 'replies'));
 		//
 		//return view('questions.show')->with('question', $question);
@@ -147,7 +119,7 @@ class QuestionsController extends Controller
 	}
 
 
-	//this methog is alos used to manage the next/previous question using a post form. Kind of hijacking the purpose of it...
+	//this methog is also used to manage the next/previous question using a post form. Kind of hijacking the purpose of it...
 	public function store(Request $request)
 	{
 

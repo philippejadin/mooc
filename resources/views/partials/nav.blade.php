@@ -2,7 +2,7 @@
         <div class="container">
           <div class="navbar-header">
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-              <span class="sr-only">Toggle navigation</span>
+              <span class="sr-only">Afficher la navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -22,7 +22,7 @@
 
               @if ($user_logged)
               <li><a>Bonjour, {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} @if ($user_is_admin) (admin) @endif</a></li>
-              <li><a href="{{ url('auth/logout') }}">Déconnection</a></li>
+              <li><a href="{{ url('auth/logout') }}">Déconnexion</a></li>
               @else
               <li><a href="{{ url('auth/register') }}">Créer un compte</a></li>
               <li><a href="{{ url('auth/login') }}">Se connecter</a></li>

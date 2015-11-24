@@ -48,12 +48,14 @@ a {
   margin-top: 3px;
 }
 
+/*
 .question h2 {
   page-break-after: avoid;
 }
 .more_info, .replies {
   page-break-inside: avoid;
 }
+*/
 .question h2 a {
   color: black;
   border-bottom: 1pt solid black;
@@ -69,6 +71,12 @@ a {
   padding-right: 2mm;
   margin: 0;
 }
+
+.more_info li
+{
+  list-style-type: none;
+}
+
 .footer {
   position: fixed;
   bottom: 0px;

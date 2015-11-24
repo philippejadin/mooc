@@ -53,7 +53,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -144,7 +144,7 @@ return [
         Illuminate\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
-
+        Potsky\LaravelLocalizationHelpers\LaravelLocalizationHelpersServiceProviderLaravel5::class,
 
 
         /*
@@ -153,6 +153,8 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
 
 
 
@@ -172,7 +174,7 @@ return [
 
     'aliases' => [
 
-    
+
 
 
         'App'       => Illuminate\Support\Facades\App::class,
