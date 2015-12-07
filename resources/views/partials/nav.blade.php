@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav">
               <li><a href="{{ url('home') }}">Accueil</a></li>
               <li><a href="{{ url('questions') }}">Les questions</a></li>
-              <li><a href="{{ url('pdf') }}" target="_blank">Votre récapitulatif en PDF</a></li>
+              <li><a href="{{ url('recap/pdf') }}" target="_blank">Votre récapitulatif en PDF</a></li>
               <!--<li><a href="#">Contact</a></li>-->
             </ul>
 

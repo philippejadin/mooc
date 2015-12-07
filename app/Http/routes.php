@@ -54,7 +54,8 @@ Route::resource('questions', 'QuestionsController');
 
 
 
-Route::get('pdf', 'PdfController@index');
+Route::get('recap/{type}', 'RecapController@index');
+
 
 
 Route::get('finish', function ()

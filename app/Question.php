@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Auth;
 use App\Reply;
 
@@ -28,15 +27,12 @@ Returns the available choices for this question
 	{
 		//$replies_array = explode ('/', $this->replies);
 		$replies_array = preg_split("/\r\n|\n|\r/", $this->replies);
-
 		foreach ($replies_array as $key => $reply)
 		{
 			$replies[$key+1]['text'] = $reply;
 			$replies[$key+1]['checked'] = false;
 		}
-
 		return $replies;
-
 	}
 
 

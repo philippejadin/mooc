@@ -48,6 +48,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
 
+    /**
+   * The questions answered
+   */
+   public function questionsReplied()
+   {
+      //return $this->hasMany('App\Question')->where('user_id', $this->id);
+      return $this->belongsToMany('App\Question', 'replies');
+   }
+
+
 
 
 
