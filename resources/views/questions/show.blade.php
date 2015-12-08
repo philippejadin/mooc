@@ -5,12 +5,12 @@
 
 <div class="question">
 
-Vous avez répondu à {{$total_questions_replied}} questions sur un total de {{$total_questions}}
+  Vous avez répondu à {{$total_questions_replied}} questions sur un total de {{$total_questions}}
   <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="{{$total_questions_replied_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total_questions_replied_percent}}%;">
-    <span class="sr-only">{{$total_questions_replied_percent}}%</span>
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{$total_questions_replied_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$total_questions_replied_percent}}%;">
+      <span class="sr-only">{{$total_questions_replied_percent}}%</span>
+    </div>
   </div>
-</div>
 
 
   {!! Form::open(['url' => 'questions']) !!}
@@ -23,15 +23,26 @@ Vous avez répondu à {{$total_questions_replied}} questions sur un total de {{$
   <div class="replies">
     @foreach ($replies as $key => $reply)
     <input type="radio" name="user_reply" value="{{$key}}"  @if ($reply['checked']) checked @endif> {{$reply['text']}} </input>
-      @if ($question->answer == $key) <img   @unless ($reply['checked']) style="display:none" @endunless class="reply_sign" src="{{asset('css/right.png')}}"/> @endif
-      @if ($question->answer <> $key) <img @unless ($reply['checked']) style="display:none" @endunless class="reply_sign" src="{{asset('css/wrong.png')}}"/> @endif
+
+    @if ($question->answer == $key)
+    <span @unless ($reply['checked']) style="display:none" @endunless class="reply_sign">
+      <img src="{{asset('css/right.png')}}"/>
+    </span>
+    @endif
+
+    @if ($question->answer <> $key)
+    <span @unless ($reply['checked']) style="display:none" @endunless class="reply_sign">
+      <img src="{{asset('css/wrong.png')}}"/>
+      <span style="font-size: 0.8em">Peut être le sujet mérite-t-il d'être approfondi.</span>
+    </span>
+    @endif
     <br/>
     @endforeach
-    </div>
+  </div>
 
 
 
-    <div class="buttons">
+  <div class="buttons">
     @if ($previousQuestionID)
     <form>
       <button type="submit" class="btn btn-default" name="previous" value="Question précédente">

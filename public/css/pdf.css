@@ -63,6 +63,12 @@ a {
 .help {
   /*margin-bottom: 1cm;*/
 }
+
+.help img, .more_info img
+{
+  display: none;
+}
+
 .more_info {
   border: 0.2pt solid gray;
   background-color: rgb(227, 227, 225);
