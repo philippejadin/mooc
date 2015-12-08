@@ -76,10 +76,18 @@ class QuestionsController extends Controller
 
 		$question = Question::find($id);
 
+
 		if (is_null($question))
 		{
 			abort(404);
 		}
+
+		$total_questions = Question::count();
+		$user = Auth::user();
+		$total_questions_replied = $user->questionsReplied()->count();
+
+
+		$total_questions_replied_percent = round($total_questions_replied / $total_questions * 100);
 
 
 		// Get the current user that will be the origin of our operations
@@ -102,9 +110,7 @@ class QuestionsController extends Controller
 		}
 
 
-		return view('questions.show', compact('question', 'previousQuestionID', 'nextQuestionID', 'replies'));
-		//
-		//return view('questions.show')->with('question', $question);
+		return view('questions.show', compact('question', 'previousQuestionID', 'nextQuestionID', 'replies', 'total_questions', 'total_questions_replied', 'total_questions_replied_percent'));
 	}
 
 
@@ -131,34 +137,34 @@ class QuestionsController extends Controller
 
 		// this block takes care of redirecting to the proper question
 		if ($request->input('next'))
+		{
+			$user = Auth::user();
+
+			$question = Question::find($request->input('question_id'));
+			$question->setAnswer($request->input('user_reply'));
+
+			if ($request->input('next_question_id'))
 			{
-				$user = Auth::user();
-
-				$question = Question::find($request->input('question_id'));
-				$question->setAnswer($request->input('user_reply'));
-
-				if ($request->input('next_question_id'))
-				{
-						return redirect('questions/'. $request->input('next_question_id'));
-				}
-				else // latest question, redirect to the "finish" page
-				{
-						return redirect('finish');
-				}
-
-
+				return redirect('questions/'. $request->input('next_question_id'));
+			}
+			else // latest question, redirect to the "finish" page
+			{
+				return redirect('finish');
 			}
 
 
-			if ($request->input('previous'))
-			{
-				$user = Auth::user();
+		}
 
-				$question = Question::find($request->input('question_id'));
-				$question->setAnswer($request->input('user_reply'));
 
-				return redirect('questions/'. $request->input('previous_question_id'));
-			}
+		if ($request->input('previous'))
+		{
+			$user = Auth::user();
+
+			$question = Question::find($request->input('question_id'));
+			$question->setAnswer($request->input('user_reply'));
+
+			return redirect('questions/'. $request->input('previous_question_id'));
+		}
 
 
 		// this is the normal flow when a new question is stored :

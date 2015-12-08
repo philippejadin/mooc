@@ -7,11 +7,12 @@ $(document).ready(function(){
 });
 
 
-/* todo : afficher l'image bon ou pas bon du radio button cliqué */
-/*
+/* Afficher l'image bon ou pas bon du radio button cliqué */
+
 $(document).ready(function(){
 		$( ".question input[type=radio]" ).click(function() {
-				$(".help").slideDown();
+				$(".reply_sign").hide();
+				$(this).next(".reply_sign").show();
+				/*alert('test');*/
 		});
 });
-*/

@@ -15,6 +15,13 @@ a
 	margin-bottom: 3em;
 }
 
+.reply_sign
+{
+height: 1em;
+width: auto;	
+
+}
+
 body, h1, h2, h3
 {
 /*font-size: 1.5em;*/
