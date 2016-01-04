@@ -65,6 +65,9 @@
 
       <a class="btn btn-default" href="{{ url('recap/pdf') }}" target="_blank">Téléchargez votre récapitulatif en PDF</a>
 
+      <a class="btn btn-default" href="https://docs.google.com/forms/d/1pezQ-Ub5o8vxAxEx7NvJljKKg7L2MXQzGH8iVHzb4us/viewform?usp=send_form" target="_blank">
+        Donnez votre avis sur cet outil</a>
+
     </div>
     {!! Form::close() !!}
 
