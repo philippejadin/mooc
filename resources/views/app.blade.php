@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name=viewport content="width=device-width, initial-scale=1">
-        <title>Mooc Yapaka</title>
+        <title>Formation en ligne / module de base : points de repère pour prévenir la maltraitance</title>
         <!-- Latest compiled and minified CSS -->
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
 

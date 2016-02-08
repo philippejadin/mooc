@@ -8,7 +8,7 @@
 @endif
 
 
-    <h2>Formation en ligne : points de repère pour prévenir la maltraitance</h2>
+    <h2>Formation en ligne / module de base : points de repère pour prévenir la maltraitance</h2>
 
 <p>
 Vous avez en charge des enfants et vous vous posez des questions relatives à la négligence et à la maltraitance : cette formation en ligne va vous donner quelques points de repère.
