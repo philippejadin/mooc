@@ -57,6 +57,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
       return $this->belongsToMany('App\Question', 'replies');
    }
 
+   /**
+  * The questions answered
+  */
+  public function replies()
+  {
+     return $this->belongsToMany('App\Question', 'replies');
+  }
+
 
 
 

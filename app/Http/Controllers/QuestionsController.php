@@ -41,9 +41,13 @@ class QuestionsController extends Controller
 		}
 
 
+		$replies = Auth::user()->replies;
+
+		//dd ($replies);
+
 		foreach ($questions as $question)
 		{
-			if ($question->getAnswer())
+			if ($replies->contains('id', $question->id))
 			{
 				$question->replied = true;
 			}
